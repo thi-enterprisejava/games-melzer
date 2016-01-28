@@ -4,11 +4,20 @@
         "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
       xml:lang="en" lang="en">
 <body>
     <ui:composition template="template.xhtml">
         <ui:define name="content">
-            <h1>#{msg['welcome.text']}</h1>
+            <h1 id="heading">#{msg['welcome.text']}</h1>
+            <div>
+            <p>Auf dieser Seite kannst Du bequem alle Deine Spiele organisieren und verwalten!<br />
+                Falls Du noch nicht registriert bist, melder dich <a href="login.xhtml">hier</a> an!<br />
+                Möchtest Du <a href="addgame.xhtml">ein neues Spiel anlegen</a>?
+                Oder eine <a href="mygames.xhtml">Übersicht</a> Deiner Spiele sehen?
+            </p>
+            </div>
         </ui:define>
     </ui:composition>
 </body>

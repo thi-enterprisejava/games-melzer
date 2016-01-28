@@ -1,4 +1,4 @@
-package de.thi.games.web.domain;
+package de.thi.games.domain;
 
 public class Platform {
 

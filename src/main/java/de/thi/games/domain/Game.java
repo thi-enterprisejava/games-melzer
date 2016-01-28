@@ -1,6 +1,7 @@
-package de.thi.games.web.domain;
+package de.thi.games.domain;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Game implements Serializable{
@@ -8,9 +9,11 @@ public class Game implements Serializable{
     private String name;
     private String publisher;
     private Platform platform;
-    private List<Genre> genres;
+    private List<Genre> genres = new ArrayList();
     private int year;
     private Boolean multiplayer;
+
+    public Game(){}
 
     public Game(String name){
         this.setName(name);
