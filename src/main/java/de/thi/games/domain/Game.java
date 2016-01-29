@@ -7,11 +7,13 @@ import java.util.List;
 public class Game implements Serializable{
 
     private String name;
+    private String description;
     private String publisher;
     private Platform platform;
     private List<Genre> genres = new ArrayList();
     private int year;
     private Boolean multiplayer;
+    private byte[] cover;
 
     public Game(){}
 
@@ -23,10 +25,11 @@ public class Game implements Serializable{
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
-    }
+    public void setName(String name) { this.name = name; }
 
+    public String getDescription() { return description; }
+
+    public void setDescription(String description) { this.description = description; }
     public String getPublisher() {
         return publisher;
     }
@@ -66,4 +69,8 @@ public class Game implements Serializable{
     public void setMultiplayer(Boolean multiplayer) {
         this.multiplayer = multiplayer;
     }
+
+    public byte[] getCover() { return cover; }
+
+    public void setCover(byte[] cover) { this.cover = cover; }
 }

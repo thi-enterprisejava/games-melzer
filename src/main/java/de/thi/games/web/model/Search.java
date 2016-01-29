@@ -41,7 +41,6 @@ public class Search implements Serializable {
                 new Game("Tekken 3")
         );
 
-
         return "searchResult";
 
     }

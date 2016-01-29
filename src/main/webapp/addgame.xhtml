@@ -12,6 +12,57 @@
     <ui:define name="content">
         <h1 id="heading">#{msg['add.heading']}</h1>
         <h:form>
+            <fieldset>
+                <legend>#{msg['add.legend']}</legend>
+                <div>
+                    <h:outputLabel for="gname" value="#{msg['add.gname']}: " />
+                    <h:inputText id="gname" >
+                        <f:validateRequired/>
+                        <f:validateLength minimum="2" maximum="50" />
+                    </h:inputText>
+                </div>
+
+                <div> <!-- ggf als "Datepicker"? -->
+                    <h:outputLabel for="gyear" value="#{msg['add.gyear']}: " />
+                    <h:inputText id="gyear" maxlength="4">
+                        <f:validateRequired/>
+                        <f:validateRegex pattern="^(19|20)\d{2}$" />
+                    </h:inputText>
+                </div>
+
+                <div>
+                    <h:outputLabel for="gdescr" value="#{msg['add.gdescr']}: " />
+                    <h:inputTextarea id="gdescr" rows="5" cols="40"/>
+                </div>
+                <div>
+                    <h:outputLabel for="gplatform" value="#{msg['add.gplatform']}: "/>
+                    <h:selectOneListbox id="gplatform" />
+                </div>
+                <div>
+                    <h:outputLabel for="gpublish" value="#{msg['add.gpublish']}: " />
+                    <h:inputText id="gpublish" >
+                        <f:validateRequired/>
+                        <f:validateLength minimum="2" maximum="30" />
+                    </h:inputText>
+                </div>
+                <div>
+                    <h:outputLabel for="genre" value="#{msg['add.genre']}: " />
+                    <h:selectManyListbox id="genre" ></h:selectManyListbox>
+                </div>
+                <div>
+                    <h:outputLabel for="gmultipl" value="#{msg['add.gmultipl']}: " />
+                    <h:selectBooleanCheckbox id="gmultipl">
+
+                    </h:selectBooleanCheckbox>
+                </div>
+                <div>
+                    <h:outputLabel for="gpic" value="#{msg['add.gpic']}: " />
+                    <h:inputFile id="gpic" ></h:inputFile>
+                </div>
+                <div>
+                    <h:commandButton value="#{msg['add.save']}" />
+                </div>
+            </fieldset>
         </h:form>
     </ui:define>
 </ui:composition>
