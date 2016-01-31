@@ -11,13 +11,13 @@
     <ui:composition template="template.xhtml">
         <ui:define name="content">
             <h1 id="heading">#{msg['welcome.text']}</h1>
-            <div>
+            <h:form>
             <p>Auf dieser Seite kannst Du bequem alle Deine Spiele organisieren und verwalten!<br />
-                Falls Du noch nicht registriert bist, melder dich <a href="login.xhtml">hier</a> an!<br />
-                Möchtest Du <a href="addgame.xhtml">ein neues Spiel anlegen</a>?
-                Oder eine <a href="mygames.xhtml">Übersicht</a> Deiner Spiele sehen?
+                Falls Du noch nicht registriert bist, melde dich <a href="login.xhtml">hier</a> an!<br />
+                Möchtest Du <h:commandLink action="#{listGamesBean.doAddGame}">ein neues Spiel anlegen</h:commandLink>?
+                Oder eine <h:commandLink action="mygames">Übersicht</h:commandLink> Deiner Spiele sehen?
             </p>
-            </div>
+            </h:form>
         </ui:define>
     </ui:composition>
 </body>

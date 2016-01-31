@@ -13,7 +13,7 @@ public class Game implements Serializable{
     private List<Genre> genres = new ArrayList();
     private int year;
     private Boolean multiplayer;
-    private byte[] cover;
+    //private byte[] cover;
 
     public Game(){}
 
@@ -70,7 +70,7 @@ public class Game implements Serializable{
         this.multiplayer = multiplayer;
     }
 
-    public byte[] getCover() { return cover; }
+    /*public byte[] getCover() { return cover; }
 
-    public void setCover(byte[] cover) { this.cover = cover; }
+    public void setCover(byte[] cover) { this.cover = cover; }*/
 }

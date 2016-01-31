@@ -38,7 +38,8 @@ public class Search implements Serializable {
         // Simulate search result
         result = Arrays.asList(
                 new Game("The Witcher"),
-                new Game("Tekken 3")
+                new Game("Tekken 3"),
+                new Game("Resident Evil 6")
         );
 
         return "searchResult";

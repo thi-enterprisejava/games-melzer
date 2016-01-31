@@ -22,7 +22,7 @@ public class SearchTest {
     @Test
     public void thatSearchNavigatesToListResults() throws Exception {
         String result = search.doSearch();
-        assertEquals("listResults", result);
+        assertEquals("searchResult", result);
     }
 
     @Test

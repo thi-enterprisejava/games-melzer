@@ -10,8 +10,17 @@
 <body>
 <ui:composition template="template.xhtml">
     <ui:define name="content">
-        <h1 id="heading"></h1> <!-- Name des Spiels als Überschrift -->
-        <!-- hier Datails eines Spiels anzeigen -->
+        <h1 id="heading">#{gameProducer.selectedGame.name}</h1>
+        <p>#{msg['gamedetails.descr']}: #{gameProducer.selectedGame.description}</p>
+        <p>#{msg['gamedetails.year']}: #{gameProducer.selectedGame.year}</p>
+        <p>#{msg['gamedetails.publ']}: #{gameProducer.selectedGame.publisher}</p>
+        <p>#{msg['gamedetails.platform']}: #{gameProducer.selectedGame.platform.name}</p>
+        <p>#{msg['gamedetails.genres']}:</p>
+        <ui:repeat value="#{gameProducer.selectedGame.genres}" var="genre">
+            <p> #{genre.name} </p>
+        </ui:repeat>
+        <p>#{msg['gamedetails.multipl']}: #{gameProducer.selectedGame.multiplayer ? msg['gamedetails.yes'] : msg['gamedetails.no']}</p>
+        <a href="mygames.xhtml">Zurück</a>
     </ui:define>
 </ui:composition>
 </body>

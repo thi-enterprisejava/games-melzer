@@ -11,7 +11,7 @@
 <ui:composition template="template.xhtml">
     <ui:define name="content">
         <h1 id="heading">#{msg['login.heading']}</h1>
-        <form>
+        <h:form>
             <fieldset>
                 <legend>Login</legend>
                 <label for="username">#{msg['login.username']}</label>
@@ -22,7 +22,8 @@
 
                 <input type="submit" value="Login"/>
             </fieldset>
-        </form>
+            <h:commandLink action="index" value="Zurück"/>
+        </h:form>
     </ui:define>
 </ui:composition>
 </body>

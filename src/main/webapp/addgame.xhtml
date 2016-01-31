@@ -10,59 +10,78 @@
 <body>
 <ui:composition template="template.xhtml">
     <ui:define name="content">
-        <h1 id="heading">#{msg['add.heading']}</h1>
+        <h1 id="heading">#{gameProducer.isAddMode() ?
+        msg['add.heading'] :
+        msg['edit.heading']}</h1>
         <h:form>
             <fieldset>
                 <legend>#{msg['add.legend']}</legend>
-                <div>
-                    <h:outputLabel for="gname" value="#{msg['add.gname']}: " />
-                    <h:inputText id="gname" >
-                        <f:validateRequired/>
-                        <f:validateLength minimum="2" maximum="50" />
-                    </h:inputText>
-                </div>
+                <h:panelGrid columns="2">
+                    <h:panelGroup>
+                        <h:outputLabel for="gname" value="#{msg['add.gname']}: " />
+                        <h:inputText id="gname"
+                                     value="#{gameProducer.selectedGame.name}"
+                                     validatorMessage="Der Name muss zwischen 1 und 50 Zeichen lang sein!">
+                            <f:validateRequired/>
+                            <f:validateLength minimum="1" maximum="50" />
+                        </h:inputText>
+                    </h:panelGroup>
+                    <h:message for="gname" style="color: red" />
 
-                <div> <!-- ggf als "Datepicker"? -->
-                    <h:outputLabel for="gyear" value="#{msg['add.gyear']}: " />
-                    <h:inputText id="gyear" maxlength="4">
-                        <f:validateRequired/>
-                        <f:validateRegex pattern="^(19|20)\d{2}$" />
-                    </h:inputText>
-                </div>
+                    <h:panelGroup> <!-- ggf als "Datepicker"? -->
+                        <h:outputLabel for="gyear" value="#{msg['add.gyear']}: " />
+                        <h:inputText id="gyear"
+                                     value="#{gameProducer.selectedGame.year}"
+                                     maxlength="4"
+                                     converterMessage="Please enter digits only."
+                                     validatorMessage="Bitte gib eine Jahreszahl zwischen 1900 und 2099 ein!" >
+                            <f:validateRequired/>
+                            <f:validateLength maximum="4" minimum="4" />
+                        </h:inputText>
+                    </h:panelGroup>
+                    <h:message for="gyear" style="color: red" />
 
-                <div>
-                    <h:outputLabel for="gdescr" value="#{msg['add.gdescr']}: " />
-                    <h:inputTextarea id="gdescr" rows="5" cols="40"/>
-                </div>
-                <div>
-                    <h:outputLabel for="gplatform" value="#{msg['add.gplatform']}: "/>
-                    <h:selectOneListbox id="gplatform" />
-                </div>
-                <div>
-                    <h:outputLabel for="gpublish" value="#{msg['add.gpublish']}: " />
-                    <h:inputText id="gpublish" >
-                        <f:validateRequired/>
-                        <f:validateLength minimum="2" maximum="30" />
-                    </h:inputText>
-                </div>
-                <div>
-                    <h:outputLabel for="genre" value="#{msg['add.genre']}: " />
-                    <h:selectManyListbox id="genre" ></h:selectManyListbox>
-                </div>
-                <div>
-                    <h:outputLabel for="gmultipl" value="#{msg['add.gmultipl']}: " />
-                    <h:selectBooleanCheckbox id="gmultipl">
+                    <h:panelGroup>
+                        <h:outputLabel for="gdescr" value="#{msg['add.gdescr']}: " />
+                        <h:inputTextarea id="gdescr" value="#{gameProducer.selectedGame.description}"
+                                         rows="5" cols="40"/>
+                    </h:panelGroup>
 
-                    </h:selectBooleanCheckbox>
-                </div>
-                <div>
-                    <h:outputLabel for="gpic" value="#{msg['add.gpic']}: " />
-                    <h:inputFile id="gpic" ></h:inputFile>
-                </div>
-                <div>
-                    <h:commandButton value="#{msg['add.save']}" />
-                </div>
+                    <h:panelGroup>
+                        <h:outputLabel for="gplatform" value="#{msg['add.gplatform']}: "/>
+                        <h:selectOneListbox id="gplatform" value="#{gameProducer.selectedGame.platform.name}"/>
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                        <h:outputLabel for="gpublish" value="#{msg['add.gpublish']}: " />
+                        <h:inputText id="gpublish"
+                                     value="#{gameProducer.selectedGame.publisher}"
+                                     validatorMessage="Der Entwicklername muss zwischen 2 und 30 Zeichen lang sein!">
+                            <f:validateRequired/>
+                            <f:validateLength minimum="2" maximum="30" />
+                        </h:inputText>
+                    </h:panelGroup>
+                    <h:message for="gpublish" style="color: red" />
+
+                    <h:panelGroup>
+                        <h:outputLabel for="genre" value="#{msg['add.genre']}: " />
+                        <h:selectManyListbox
+                                value="#{gameProducer.selectedGame.genres}"
+                                id="genre" ></h:selectManyListbox>
+                        <f:selectItems value="" />
+                    </h:panelGroup>
+
+                    <h:panelGroup>
+                        <h:outputLabel for="gmultipl" value="#{msg['add.gmultipl']}: " />
+                        <h:selectBooleanCheckbox id="gmultipl" value="#{gameProducer.selectedGame.multiplayer}" />
+                    </h:panelGroup>
+
+                </h:panelGrid>
             </fieldset>
+            <div>
+                <h:commandButton value="#{msg['add.save']}" action="#{editGameBean.doSave}"/>
+                <h:commandButton value="#{msg['add.cancel']}" action="#{editGameBean.doCancel}" />
+            </div>
         </h:form>
     </ui:define>
 </ui:composition>

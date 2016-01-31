@@ -6,12 +6,64 @@
       xmlns:ui="http://java.sun.com/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
       xml:lang="en" lang="en">
 <body>
 <ui:composition template="template.xhtml">
     <ui:define name="content">
         <h1 id="heading">#{msg['mygames.heading']}</h1>
         <!-- Liste aller Spiele eines Users anzeigen -->
+        <h:form>
+            <p:dataTable value="#{dummyGameListProducer.games}"
+                         var="game">
+                <p:column>
+                    <p:commandButton onclick="confirmation.show()" actionListener="#{listGamesBean.doDeleteGame(game)}"
+                                     value="X" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">#{msg['mygames.name']}</f:facet>
+                    <h:outputText value="#{game.name}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">#{msg['mygames.pub']}</f:facet>
+                    <h:outputText value="#{game.publisher}" />
+                </p:column>
+                <p:column>
+                    <f:facet name="header">#{msg['mygames.year']}</f:facet>
+                    <h:outputText value="#{game.year}" />
+                </p:column>
+                <!--
+                <h:column>
+                    <f:facet name="header">Platform</f:facet>
+                    <h:outputText value="#{game.platform}" />
+                </h:column> -->
+                <p:column>
+                    <p:commandButton value="#{msg['mygames.edit']}"
+                                     ajax="false"
+                                     action="#{listGamesBean.doEditGame(game)}" />
+                </p:column>
+                <p:column>
+                    <p:commandButton value="#{msg['mygames.details']}"
+                                     ajax="false"
+                                     action="#{listGamesBean.doShowDetails(game)}" />
+                </p:column>
+            </p:dataTable>
+            <p:commandButton value="#{msg['mygames.new']}"
+                             ajax="false"
+                             action="#{listGamesBean.doAddGame}" />
+            <p:confirmDialog
+                message="Wirklich loeschen?"
+                header="Spiel loeschen"
+                severity="alert"
+                widgetVar="confirmation">
+                <p:commandButton value="Ja"
+                                 oncomplete="confirmation.hide()" ajax="false"
+                                 actionListener="#{listGamesBean.commitDeleteGame}" />
+                <p:commandButton value="Nein"
+                                 onclick="confirmation.hide()" />
+            </p:confirmDialog>
+
+        </h:form>
     </ui:define>
 </ui:composition>
 </body>
