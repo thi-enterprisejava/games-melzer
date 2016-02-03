@@ -14,7 +14,7 @@
         <h1 id="heading">#{msg['mygames.heading']}</h1>
         <!-- Liste aller Spiele eines Users anzeigen -->
         <h:form>
-            <p:dataTable value="#{dummyGameListProducer.games}"
+            <p:dataTable value="#{games}"
                          var="game">
                 <p:column>
                     <p:commandButton onclick="confirmation.show()" actionListener="#{listGamesBean.doDeleteGame(game)}"
@@ -32,11 +32,10 @@
                     <f:facet name="header">#{msg['mygames.year']}</f:facet>
                     <h:outputText value="#{game.year}" />
                 </p:column>
-                <!--
-                <h:column>
+                <p:column>
                     <f:facet name="header">Platform</f:facet>
-                    <h:outputText value="#{game.platform}" />
-                </h:column> -->
+                    <h:outputText value="#{game.platform.name}" />
+                </p:column>
                 <p:column>
                     <p:commandButton value="#{msg['mygames.edit']}"
                                      ajax="false"

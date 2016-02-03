@@ -1,19 +1,24 @@
 package de.thi.games.web.model;
 
 import de.thi.games.domain.Game;
+import de.thi.games.util.Events;
 
-import javax.enterprise.context.SessionScoped;
+import javax.enterprise.event.Event;
+import javax.faces.view.ViewScoped;
 import javax.inject.Inject;
 import javax.inject.Named;
 import java.io.Serializable;
 import java.util.List;
 
-@SessionScoped
+@ViewScoped
 @Named
 public class ListGamesBean implements Serializable {
 
     @Inject
     private GameProducer gameProducer;
+
+    @Inject @Events.Deleted
+    private Event<Game> gameDeleteEvent;
 
     private Game gameToDelete;
 
@@ -38,12 +43,11 @@ public class ListGamesBean implements Serializable {
     }
 
     public void commitDeleteGame() {
-        System.out.println("Game deletion not implemented yet!");
+        gameDeleteEvent.fire(gameToDelete);
     }
 
     public String doShowDetails(Game game) {
         gameProducer.setSelectedGame(game);
         return "gamedetails";
     }
-    //DoSaveGame
 }
